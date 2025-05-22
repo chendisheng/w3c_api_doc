@@ -1,0 +1,2827 @@
+openapi: 3.1.0
+x-stoplight:
+  id: byijbc8ann202
+info:
+  version: '1.0'
+  title: w3c API
+servers:
+  - url: 'http://localhost:3000'
+paths:
+  /api/v1/users/me:
+    get:
+      tags:
+        - user
+      summary: Get account info
+      operationId: get-users-me
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta'
+                  data:
+                    $ref: '#/components/schemas/User'
+              examples:
+                Example 1:
+                  value:
+                    meta:
+                      code: 0
+                      msg: Succeed
+                      msgCode: 0
+                      serviceTime: 1747635221779
+                    data:
+                      id: 0
+                      email: user@example.com
+                      nickName: Alice
+                      language: en-US
+                      userPhoto: '1'
+      servers:
+        - url: 'http://localhost:3000'
+      x-stoplight:
+        id: sgrwvl4pf4i77
+    patch:
+      tags:
+        - user
+      summary: Update account info
+      operationId: patch-users-me
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nickName:
+                  type: string
+                avatarPhoto:
+                  type: integer
+                language:
+                  type: string
+              x-examples:
+                Example 1:
+                  nickName: New Nick Name
+                  avatar: 'http://new-avatar-link'
+                  avatarPhoto: 1
+            examples:
+              Example 1:
+                value:
+                  nickName: Tom
+                  avatarPhoto: 0
+                  language: en-US
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta'
+                  data:
+                    $ref: '#/components/schemas/User'
+              examples:
+                Example 1:
+                  value:
+                    meta:
+                      code: 0
+                      msg: Succeed
+                      msgCode: 0
+                      serviceTime: 1747635221779
+                    data:
+                      id: 0
+                      email: user@example.com
+                      nickName: Alice
+                      language: en-US
+                      userPhoto: '1'
+      servers:
+        - url: 'http://localhost:3000'
+      x-stoplight:
+        id: ftn31khby6rt9
+  /api/v1/lottery/issues:
+    get:
+      tags:
+        - lottery
+      summary: Get lottery issues
+      operationId: get-api-v1-games-challenge-history-issue
+      parameters:
+        - name: gameCode
+          in: query
+          description: game code
+          required: true
+          schema:
+            type: string
+            enum:
+              - Go_1M
+              - Go_3M
+              - Go_30S
+            examples:
+              - Go_1M
+        - name: pageNo
+          in: query
+          description: page no.
+          required: true
+          schema:
+            type: string
+        - name: language
+          in: query
+          description: language
+          schema:
+            type: string
+        - name: random
+          in: query
+          description: random number
+          schema:
+            type: string
+        - name: timestamp
+          in: query
+          description: request timestamp
+          schema:
+            type: string
+        - name: signature
+          in: query
+          description: 85DC46F83C3635401B6376E5B5A4E148
+          schema:
+            type: string
+            examples:
+              - 85DC46F83C3635401B6376E5B5A4E148
+        - name: type
+          in: query
+          schema:
+            type: string
+            enum:
+              - history
+              - future
+              - current
+            examples:
+              - future
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta'
+                  data:
+                    type: object
+                    properties:
+                      issues:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/LotteryIssue'
+                      pagination:
+                        $ref: '#/components/schemas/Pagination'
+              examples:
+                Example 1:
+                  value:
+                    meta:
+                      code: 0
+                      msg: Succeed
+                      msgCode: 0
+                      serviceTime: 1747635221779
+                    data:
+                      issues:
+                        - issueNumber: '20250519103010538'
+                          number: '3'
+                          color: green
+                          premium: '3'
+                          sum: 3
+                          blockId: 00000000044faa309768a6d0caca6361dd7dfc28c927ce1d55ea4bc2c555ea43
+                          blockNumber: 72329776
+                          blockTimestamp: 1747645074000
+                      pagination:
+                        pageNo: 0
+                        totalPage: 0
+                        totalCount: 0
+      servers:
+        - url: 'http://localhost:3000'
+      x-stoplight:
+        id: ffki5lj90cr5k
+  /api/v1/lottery/game-info:
+    get:
+      tags:
+        - lottery
+      summary: Get Game Info
+      operationId: get-api-v1-games-instant-game-info
+      parameters:
+        - name: gameCode
+          in: query
+          description: game code
+          required: true
+          schema:
+            type: string
+        - name: language
+          in: query
+          description: language
+          schema:
+            type: string
+        - name: timestamp
+          in: query
+          description: timestamp
+          schema:
+            type: string
+        - name: random
+          in: query
+          description: random number
+          schema:
+            type: string
+        - name: signature
+          in: query
+          description: signature
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta'
+                  data:
+                    $ref: '#/components/schemas/LotteryGameInfo'
+              examples:
+                Example 1:
+                  value:
+                    meta:
+                      code: 0
+                      msg: Succeed
+                      msgCode: 0
+                      serviceTime: 1747635221779
+                    data:
+                      gameCode: Go_1M
+                      state: 1
+                      betScopes:
+                        - 1
+                        - 10
+                        - 100
+                        - 1000
+                      betMultiples:
+                        - 1
+                        - 5
+                        - 10
+                        - 20
+                        - 50
+                        - 100
+                      webSocketUrl: ''
+                      rates:
+                        - playTypeId: 119
+                          playType: BigSmall
+                          playBet: big
+                          state: 1
+                          playRate: 2
+                        - playTypeId: 115
+                          playType: Color
+                          playBet: violet
+                          state: 1
+                          playRate: 4.5
+                        - playTypeId: 112
+                          playType: Color
+                          playBet: green
+                          state: 1
+                          playRate: 2
+                        - playTypeId: 113
+                          playType: Color
+                          playBet: red
+                          state: 1
+                          playRate: 2
+                        - playTypeId: 117
+                          playType: Color
+                          playBet: red
+                          state: 1
+                          playRate: 1.5
+                        - playTypeId: 114
+                          playType: Color
+                          playBet: violet
+                          state: 1
+                          playRate: 4.5
+                        - playTypeId: 120
+                          playType: BigSmall
+                          playBet: small
+                          state: 1
+                          playRate: 2
+                        - playTypeId: 118
+                          playType: Num
+                          playBet: 0-9
+                          state: 1
+                          playRate: 9
+                        - playTypeId: 116
+                          playType: Color
+                          playBet: green
+                          state: 1
+                          playRate: 1.5
+      servers:
+        - url: 'http://localhost:3000'
+      x-stoplight:
+        id: 8np9c6jc2nsbm
+  /api/v1/lottery/bets:
+    get:
+      tags:
+        - lottery
+      summary: GET bet list info
+      operationId: get-api-v1-games-instant-bet
+      parameters:
+        - name: language
+          in: query
+          description: language
+          schema:
+            type: string
+        - name: timestamp
+          in: query
+          description: timestamp
+          schema:
+            type: string
+        - name: random
+          in: query
+          description: random
+          schema:
+            type: string
+        - name: signature
+          in: query
+          description: signature
+          schema:
+            type: string
+        - name: issueNumber
+          in: query
+          description: issue number
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta'
+                  data:
+                    type: object
+                    properties:
+                      bets:
+                        $ref: '#/components/schemas/LotteryBet'
+                      pagination:
+                        $ref: '#/components/schemas/Pagination'
+              examples:
+                Example 1:
+                  value:
+                    meta:
+                      code: 0
+                      msg: Succeed
+                      msgCode: 0
+                      serviceTime: 1747635221779
+                    data:
+                      bets:
+                        gameCode: Go_1M
+                        issueNumber: '20250519001'
+                        play_types:
+                          - playTypeId: 119
+                            playBet: big
+                            amount: 10
+                            multiple: 1
+                          - playTypeId: 112
+                            playBet: green
+                            amount: 100
+                            multiple: 5
+                      pagination:
+                        pageNo: 0
+                        totalPage: 0
+                        totalCount: 0
+      servers:
+        - url: 'http://localhost:3000'
+      x-stoplight:
+        id: 8172c7qhd8w9m
+    post:
+      tags:
+        - lottery
+      summary: Create a bet record
+      operationId: post-api-v1-games-instant-bet
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LotteryBet'
+            examples:
+              Example 1:
+                value:
+                  gameCode: WinGo_1M
+                  issueNumber: '20250519001'
+                  play_types:
+                    - playTypeId: 119
+                      playBet: big
+                      amount: 10
+                      multiple: 1
+                    - playTypeId: 112
+                      playBet: green
+                      amount: 100
+                      multiple: 5
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta'
+                  data:
+                    type: object
+              examples:
+                Example 1:
+                  value:
+                    meta:
+                      code: 0
+                      msg: Succeed
+                      msgCode: 0
+                      serviceTime: 1747635221779
+                    data: {}
+      servers:
+        - url: 'http://localhost:3000'
+      x-stoplight:
+        id: 91mi4inolaxkn
+  /api/v1/balance:
+    get:
+      tags:
+        - balance
+      summary: Get balance
+      operationId: get-api-v1-balance
+      parameters:
+        - name: language
+          in: query
+          description: language
+          schema:
+            type: string
+        - name: timestamp
+          in: query
+          description: timestamp
+          schema:
+            type: string
+        - name: random
+          in: query
+          description: random seed
+          schema:
+            type: string
+        - name: signature
+          in: query
+          description: signature
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta'
+                  data:
+                    $ref: '#/components/schemas/Balance'
+              examples:
+                Example 1:
+                  value:
+                    meta:
+                      code: 0
+                      msg: Succeed
+                      msgCode: 0
+                      serviceTime: 1747635221779
+                    data:
+                      userId: 0
+                      uBalance: 0
+                      ppBalance: 0
+      servers:
+        - url: 'http://localhost:3000'
+      x-stoplight:
+        id: 5jbh5z3eru2lh
+  /api/v1/lottery/trend-statistics:
+    get:
+      tags:
+        - lottery
+      summary: Get trend statistics
+      operationId: get-api-v1-instant-trend-statistics
+      parameters:
+        - name: gameCode
+          in: query
+          description: game code
+          schema:
+            type: string
+        - name: pageNo
+          in: query
+          description: page index
+          schema:
+            type: string
+        - name: pageSize
+          in: query
+          description: page size
+          schema:
+            type: string
+        - name: language
+          in: query
+          description: language
+          schema:
+            type: string
+        - name: random
+          in: query
+          description: random
+          schema:
+            type: string
+        - name: timestamp
+          in: query
+          description: timestamp
+          schema:
+            type: string
+        - name: signature
+          in: query
+          description: signature
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta'
+                  data:
+                    type: object
+                    properties:
+                      trendStatistics:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/LotteryTrendStatistic'
+              examples:
+                Example 1:
+                  value:
+                    meta:
+                      code: 0
+                      msg: Succeed
+                      msgCode: 0
+                      serviceTime: 1747635221779
+                    data:
+                      trendStatistics:
+                        - position: 1
+                          number: 7
+                          missingCount: 20
+                          avgMissing: 11
+                          openCount: 7
+                          maxContinuous: 1
+      servers:
+        - url: 'http://localhost:3000'
+      x-stoplight:
+        id: qh25cv3jgtle9
+  /api/v1/lottery/my-win-records:
+    get:
+      tags:
+        - lottery
+      summary: GET my win record
+      operationId: get-api-v1-instant-win-record
+      parameters:
+        - name: gameCode
+          in: query
+          description: game code
+          schema:
+            type: string
+        - name: language
+          in: query
+          description: language
+          schema:
+            type: string
+        - name: timestamp
+          in: query
+          description: timestamp
+          schema:
+            type: string
+        - name: random
+          in: query
+          description: random
+          schema:
+            type: string
+        - name: signature
+          in: query
+          description: signature
+          schema:
+            type: string
+        - name: issueNumber
+          in: query
+          description: issue number
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta'
+                  data:
+                    type: object
+                    properties:
+                      winRecords:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/LotteryWinRecord'
+                      pagination:
+                        $ref: '#/components/schemas/Pagination'
+              examples:
+                Example 1:
+                  value:
+                    meta:
+                      code: 0
+                      msg: Succeed
+                      msgCode: 0
+                      serviceTime: 1747635221779
+                    data:
+                      winRecords:
+                        - gameCode: WinGo_30S
+                          issueNumber: 20250520001
+                          userPhoto: '3'
+                          nickName: MemberLMPOUXQR
+                          betAmount: 88
+                          amount: 129.36
+                          winTime: '2025-05-19 10:49:27'
+                          showType: 11
+                          imgUrl: 'https://ossimg.envyenvelope.com/daman/lotterycategory/lotterycategory_20240123160120h4kw.png'
+                      pagination:
+                        pageNo: 0
+                        totalPage: 0
+                        totalCount: 0
+      servers:
+        - url: 'http://localhost:3000'
+      x-stoplight:
+        id: nbrra7kjinh4t
+  /api/v1/lottery/win-records:
+    get:
+      tags:
+        - lottery
+      summary: GET win record
+      operationId: get-api-v1-lottery-win-record
+      parameters:
+        - name: gameCode
+          in: query
+          description: game code
+          schema:
+            type: string
+        - name: language
+          in: query
+          description: language
+          schema:
+            type: string
+        - name: timestamp
+          in: query
+          description: timestamp
+          schema:
+            type: string
+        - name: random
+          in: query
+          description: random
+          schema:
+            type: string
+        - name: signature
+          in: query
+          description: signature
+          schema:
+            type: string
+        - name: issueNumber
+          in: query
+          description: issue number
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta'
+                  data:
+                    type: object
+                    properties:
+                      winRecords:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/LotteryWinRecord'
+                      pagination:
+                        $ref: '#/components/schemas/Pagination'
+              examples:
+                Example 1:
+                  value:
+                    meta:
+                      code: 0
+                      msg: Succeed
+                      msgCode: 0
+                      serviceTime: 1747635221779
+                    data:
+                      winRecords:
+                        - ganmeCode: string
+                          issueNumber: 0
+                          userPhoto: string
+                          nickName: string
+                          betAmount: 0
+                          amount: 0
+                          winTime: string
+                          number: string
+                          color: string
+                      pagination:
+                        pageNo: 0
+                        totalPage: 0
+                        totalCount: 0
+      servers:
+        - url: 'http://localhost:3000'
+      x-stoplight:
+        id: uhs82kbzlb5m6
+  /api/v1/profit-rank:
+    get:
+      tags:
+        - rank
+        - lottery
+      summary: Get profit rank
+      operationId: get-api-v1-profit-rank
+      parameters:
+        - name: type
+          in: query
+          description: rank type
+          required: true
+          schema:
+            type: string
+            enum:
+              - day
+              - week
+              - month
+            examples:
+              - day
+        - name: language
+          in: query
+          description: language
+          schema:
+            type: string
+        - name: timestamp
+          in: query
+          description: timestamp
+          schema:
+            type: string
+        - name: signature
+          in: query
+          description: signature
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta'
+                  data:
+                    $ref: '#/components/schemas/ProfitRank'
+              examples:
+                Example 1:
+                  value:
+                    meta:
+                      code: 0
+                      msg: Succeed
+                      msgCode: 0
+                      serviceTime: 1747635221779
+                    data:
+                      winRecords:
+                        - type: '30'
+                          typeName: WinGo_30Sec
+                          userPhoto: '3'
+                          nickName: MemberLMPOUXQR
+                          betAmount: 88
+                          amount: 129.36
+                          winTime: '2025-05-19 10:49:27'
+                          showType: 11
+                          imgUrl: 'https://ossimg.envyenvelope.com/daman/lotterycategory/lotterycategory_20240123160120h4kw.png'
+                      withdrawalRecords:
+                        - userID: 16563638
+                          userPhoto: '20'
+                          nickName: Dipanshu
+                          price: 19758760
+                          time: '2025-05-19'
+                          typeName: Withdrawal
+      servers:
+        - url: 'http://localhost:3000'
+      x-stoplight:
+        id: nc6cvgfun88p6
+  /api/v1/scratch/purchase:
+    post:
+      tags:
+        - scratch
+      summary: Purchase scratch card
+      operationId: post-api-v1-scratch-purchase
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                themeId:
+                  type: integer
+                  description: 主题ID
+                quantity:
+                  type: integer
+                  description: 数量
+                timestamp:
+                  type: integer
+                random:
+                  type: integer
+                signature:
+                  type: string
+            examples:
+              Example 1:
+                value:
+                  themeId: 0
+                  quantity: 0
+                  timestamp: 0
+                  random: 0
+                  signature: string
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta'
+                  data:
+                    type: object
+                    properties:
+                      cardIds:
+                        type: array
+                        items:
+                          type: string
+              examples:
+                Example 1:
+                  value:
+                    meta:
+                      code: 0
+                      msg: Succeed
+                      msgCode: 0
+                      serviceTime: 1747635221779
+                    data:
+                      cardIds:
+                        - string
+      servers:
+        - url: 'http://localhost:3000'
+      x-stoplight:
+        id: qa4m0nrrbocjt
+  /api/v1/scratch/themes:
+    get:
+      tags:
+        - scratch
+      summary: Get scratch themes
+      operationId: get-api-v1-scratch-my
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta'
+                  data:
+                    type: object
+                    properties:
+                      themes:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/ScratchTheme'
+              examples:
+                Example 1:
+                  value:
+                    meta:
+                      code: 0
+                      msg: Succeed
+                      msgCode: 0
+                      serviceTime: 1747635221779
+                    data:
+                      themes:
+                        - id: 0
+                          name: Number777
+                          price: 0
+                          status: 0
+                          topPrizeAmount: 0
+                          symbolName: string
+                          cardRows: 0
+                          cardCols: 0
+      servers:
+        - url: 'http://localhost:3000'
+      x-stoplight:
+        id: 2p7p9758y8i36
+  /api/v1/scratch/my-cards:
+    get:
+      tags:
+        - scratch
+      summary: Get user card
+      operationId: get-api-v1-scratch-my-cards
+      parameters:
+        - name: pageNo
+          in: query
+          description: page index
+          schema:
+            type: string
+        - name: timestamp
+          in: query
+          description: timestamp
+          schema:
+            type: string
+        - name: random
+          in: query
+          description: random
+          schema:
+            type: string
+        - name: signature
+          in: query
+          description: signature
+          schema:
+            type: string
+        - name: themeId
+          in: query
+          description: theme id
+          schema:
+            type: string
+        - name: cardId
+          in: query
+          description: card id
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta'
+                  data:
+                    type: object
+                    properties:
+                      cards:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/ScratchCard'
+                      pagination:
+                        $ref: '#/components/schemas/Pagination'
+              examples:
+                Example 1:
+                  value:
+                    meta:
+                      code: 0
+                      msg: Succeed
+                      msgCode: 0
+                      serviceTime: 1747635221779
+                    data:
+                      cards:
+                        - id: 0
+                          cardNo: string
+                          userId: 0
+                          themeId: 0
+                          status: 0
+                          prizeLevel: 0
+                          rewardAmount: 0
+                          createdAt: 0
+                          revealedAt: 0
+                      pagination:
+                        pageNo: 0
+                        totalPage: 0
+                        totalCount: 0
+      servers:
+        - url: 'http://localhost:3000'
+      x-stoplight:
+        id: 5idcf9s06tfkn
+  /api/v1/scratch/reveal-grid:
+    post:
+      tags:
+        - scratch
+      summary: Reveal cell
+      operationId: post-api-v1-scratch-reveal
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                row:
+                  type: integer
+                col:
+                  type: integer
+                cardId:
+                  type: integer
+            examples:
+              Example 1:
+                value:
+                  row: 0
+                  col: 0
+                  cardId: 0
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta'
+                  data:
+                    $ref: '#/components/schemas/ScratchGrid'
+              examples:
+                Example 1:
+                  value:
+                    meta:
+                      code: 0
+                      msg: Succeed
+                      msgCode: 0
+                      serviceTime: 1747635221779
+                    data:
+                      gridRow: 0
+                      gridCol: 0
+                      cardId: 0
+                      revealed: true
+                      symbolName: x
+      servers:
+        - url: 'http://localhost:3000'
+      x-stoplight:
+        id: 1kzzkclmv4hxb
+  /api/v1/scratch/reveal-all:
+    post:
+      tags:
+        - scratch
+      summary: Reveal card
+      operationId: post-api-v1-scratch-reveal-all
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                timestamp:
+                  type: integer
+                random:
+                  type: number
+                signature:
+                  type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta'
+                  data:
+                    $ref: '#/components/schemas/ScratchCard'
+              examples:
+                Example 1:
+                  value:
+                    meta:
+                      code: 0
+                      msg: Succeed
+                      msgCode: 0
+                      serviceTime: 1747635221779
+                    data:
+                      id: 0
+                      cardNo: string
+                      userId: 0
+                      themeId: 0
+                      status: 1
+                      prizeLevel: 0
+                      rewardAmount: 0
+                      createdAt: 0
+                      revealedAt: 0
+      servers:
+        - url: 'http://localhost:3000'
+      x-stoplight:
+        id: r1bxrizddzycx
+  /api/v1/all-game-list:
+    get:
+      tags:
+        - common
+      summary: Get all game list
+      operationId: get-api-v1-game-list
+      parameters:
+        - name: timestamp
+          in: query
+          description: timestamp
+          schema:
+            type: integer
+        - name: random
+          in: query
+          description: random
+          schema:
+            type: integer
+        - name: signature
+          in: query
+          description: signature
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta'
+                  data:
+                    type: object
+                    properties:
+                      lottery:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/LotteryGame'
+      servers:
+        - url: 'http://localhost:3000'
+      x-stoplight:
+        id: 0ok3wfiz1jbdv
+  '/api/v1/scratch/cards/{cardId}/grids':
+    get:
+      tags:
+        - scratch
+      summary: Get scratch card grid
+      operationId: get-api-v1-scratch-grid
+      parameters:
+        - name: cardId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta'
+                  data:
+                    type: object
+                    properties:
+                      grids:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/ScratchGrid'
+              examples:
+                Example 1:
+                  value:
+                    meta:
+                      code: 0
+                      msg: Succeed
+                      msgCode: 0
+                      serviceTime: 1747635221779
+                    data:
+                      grids:
+                        - gridRow: 0
+                          gridCol: 0
+                          cardId: 0
+                          revealed: true
+                          symbolName: x
+      servers:
+        - url: 'http://localhost:3000'
+      x-stoplight:
+        id: cuh1hxtu067ry
+  /api/v1/scratch/my-win-records:
+    get:
+      tags:
+        - scratch
+      summary: Get my win records
+      operationId: get-api-v1-scratch-my-wins
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta'
+                  data:
+                    type: object
+                    properties:
+                      winRecords:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/ScratchWinRecord'
+              examples:
+                Example 1:
+                  value:
+                    meta:
+                      code: 0
+                      msg: Succeed
+                      msgCode: 0
+                      serviceTime: 1747635221779
+                    data:
+                      winRecords:
+                        - id: 901
+                          userId: 1001
+                          cardId: 5001
+                          themeId: 1
+                          prizeLevel: 1
+                          rewardaAmount: 10000
+                          winTime: '2025-05-20T13:00:00Z'
+      servers:
+        - url: 'http://localhost:3000'
+      x-stoplight:
+        id: ud9739m5enf7q
+  '/api/v1/scratch/cards/{cardId}':
+    get:
+      tags:
+        - scratch
+      summary: Get scratch card detail
+      operationId: get-api-v1-scratch-cards-cardId
+      parameters:
+        - name: cardId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta'
+                  data:
+                    type: object
+                    properties:
+                      '':
+                        type: string
+      servers:
+        - url: 'http://localhost:3000'
+      x-stoplight:
+        id: nwcetik50x1br
+  '/api/v1/scratch/themes/{id}/prizes':
+    get:
+      tags:
+        - scratch
+      summary: Get theme prizes
+      operationId: get-api-v1-scratch-themes-id-prizes
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta'
+                  data:
+                    type: object
+                    properties:
+                      prizes:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/ScratchThemePrize'
+              examples:
+                Example 1:
+                  value:
+                    meta:
+                      code: 0
+                      msg: Succeed
+                      msgCode: 0
+                      serviceTime: 1747635221779
+                    data:
+                      prizes:
+                        - id: 101
+                          level: 1
+                          name: 一等奖
+                          symbol_count: 3
+                          symbol_text: 狮子
+                          quantity: 10
+                          probability: 0.01
+                          reward: 10000
+                          description: 三个狮子图标
+      servers:
+        - url: 'http://localhost:3000'
+      x-stoplight:
+        id: uh0k6iwqvfvgd
+  /api/v1/gacha/current-issue:
+    get:
+      tags:
+        - gacha
+      summary: Get current issue
+      operationId: get-api-v1-gacha-issue
+      responses: {}
+      servers:
+        - url: 'http://localhost:3000'
+      x-stoplight:
+        id: mf8p3sblsybgd
+  /api/v1/gacha/history-issues:
+    get:
+      tags:
+        - gacha
+      summary: Get history issues
+      operationId: get-api-v1-gacha-issues
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta'
+                  data:
+                    type: object
+                    properties:
+                      issues:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/GachaIssue'
+                      pagination:
+                        $ref: '#/components/schemas/Pagination'
+              examples:
+                Example 1:
+                  value:
+                    meta:
+                      code: 0
+                      msg: Succeed
+                      msgCode: 0
+                      serviceTime: 1747635221779
+                    data:
+                      issues:
+                        - issueNumber: 0
+                          issueDate: '2025-05-20'
+                          rewardPool: 0
+                          totalSets: 0
+                          status: 0
+                      pagination:
+                        pageNo: 0
+                        totalPage: 0
+                        totalCount: 0
+      servers:
+        - url: 'http://localhost:3000'
+      x-stoplight:
+        id: 339124o9jb1xt
+  /api/v1/gacha/my-cards:
+    get:
+      tags:
+        - gacha
+      summary: Get my cards
+      operationId: get-api-v1-gacha-my-cards
+      parameters:
+        - name: issueNumber
+          in: query
+          description: issue number
+          schema:
+            type: string
+        - name: pageNo
+          in: query
+          description: page no
+          schema:
+            type: string
+        - name: pageSize
+          in: query
+          description: page size
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta'
+                  data:
+                    type: object
+                    properties:
+                      cards:
+                        type: string
+      servers:
+        - url: 'http://localhost:3000'
+      x-stoplight:
+        id: 0yfhst2w1sbe5
+  /api/v1/gacha/collection-status:
+    get:
+      tags:
+        - gacha
+      summary: Get collection status
+      operationId: get-api-v1-gacha-collection-status
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta'
+                  data:
+                    $ref: '#/components/schemas/CollectionStatus'
+              examples:
+                Example 1:
+                  value:
+                    meta:
+                      code: 0
+                      msg: Succeed
+                      msgCode: 0
+                      serviceTime: 1747635221779
+                    data:
+                      collectedSets: 0
+                      rewardEstimate: 100
+      servers:
+        - url: 'http://localhost:3000'
+      x-stoplight:
+        id: jj8jgfl8hwmsu
+  /api/v1/gacha/win-records:
+    get:
+      tags:
+        - gacha
+      summary: Get record list
+      operationId: get-api-v1-gacha-win-records
+      parameters:
+        - name: pageNo
+          in: query
+          description: page number
+          schema:
+            type: string
+        - name: pageSize
+          in: query
+          description: page size
+          schema:
+            type: string
+        - name: issueNumber
+          in: query
+          description: issue number
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta'
+                  data:
+                    type: object
+                    properties:
+                      records:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/GachaWinRecord'
+                      pagination:
+                        $ref: '#/components/schemas/Pagination'
+              examples:
+                Example 1:
+                  value:
+                    meta:
+                      code: 0
+                      msg: Succeed
+                      msgCode: 0
+                      serviceTime: 1747635221779
+                    data:
+                      records:
+                        - userId: 0
+                          userNickName: string
+                          photo: 0
+                          collectSets: 0
+                          issueNumber: 0
+                          rewardAmount: 0
+                      pagination:
+                        pageNo: 0
+                        totalPage: 0
+                        totalCount: 0
+      servers:
+        - url: 'http://localhost:3000'
+      x-stoplight:
+        id: a3ltyoqk6aqwi
+  /api/v1/gacha/my-win-records:
+    get:
+      tags:
+        - gacha
+      summary: Get my win record list
+      operationId: get-api-v1-gacha-my-win-records
+      parameters:
+        - name: pageNo
+          in: query
+          description: page number
+          schema:
+            type: string
+        - name: pageSize
+          in: query
+          description: page size
+          schema:
+            type: string
+        - name: issueNumber
+          in: query
+          description: issue number
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta'
+                  data:
+                    type: object
+                    properties:
+                      records:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/GachaWinRecord'
+                      pagination:
+                        $ref: '#/components/schemas/Pagination'
+              examples:
+                Example 1:
+                  value:
+                    meta:
+                      code: 0
+                      msg: Succeed
+                      msgCode: 0
+                      serviceTime: 1747635221779
+                    data:
+                      records:
+                        - userId: 0
+                          userNickName: string
+                          photo: 0
+                          collectSets: 0
+                          issueNumber: 0
+                          rewardAmount: 0
+                      pagination:
+                        pageNo: 0
+                        totalPage: 0
+                        totalCount: 0
+      servers:
+        - url: 'http://localhost:3000'
+      x-stoplight:
+        id: l37mwb1khrwk1
+  /api/v1/gacha/draw:
+    post:
+      tags:
+        - gacha
+      summary: Draw card
+      operationId: post-api-v1-gacha-draw
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                times:
+                  type: integer
+                issueNumber:
+                  type: integer
+            examples:
+              Example 1:
+                value:
+                  times: 0
+                  issueNumber: 0
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta'
+                  data:
+                    $ref: '#/components/schemas/GachaDraw'
+      servers:
+        - url: 'http://localhost:3000'
+      x-stoplight:
+        id: u12soialhwy9n
+  /api/auth/login:
+    post:
+      tags:
+        - auth
+      summary: Validate identity and sign access token
+      operationId: post-api-auth-token
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                didToken:
+                  type: string
+                logintype:
+                  type: string
+                language:
+                  type: string
+                random:
+                  type: string
+                signature:
+                  type: string
+                timestamp:
+                  type: integer
+              x-examples:
+                Example 1:
+                  username: '919322074403'
+                  pwd: Aa123456
+                  phonetype: 0
+                  logintype: mobile
+                  language: 0
+                  random: c62fb86ab9994a2a9a29e79a4a06251e
+                  signature: FA7FC42874686C1649F626D13B93F276
+                  timestamp: 1747809473
+            examples:
+              Example 1:
+                value:
+                  didToken: string
+                  logintype: string
+                  language: string
+                  random: string
+                  signature: string
+                  timestamp: 0
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta'
+                  data:
+                    $ref: '#/components/schemas/Token'
+              examples:
+                Example 1:
+                  value:
+                    meta:
+                      code: 0
+                      msg: Succeed
+                      msgCode: 0
+                      serviceTime: 1747635221779
+                    data:
+                      accessToken: string
+                      expiresIn: 0
+                      refreshToken: string
+                      refreshExpiresIn: 0
+      servers:
+        - url: 'http://localhost:3000'
+      x-stoplight:
+        id: tyne0dhr3zooy
+  /api/auth/refresh-token:
+    post:
+      tags:
+        - auth
+      summary: Refresh token
+      operationId: post-api-auth-refresh-token
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                refreshToken:
+                  type: string
+                language:
+                  type: string
+                random:
+                  type: string
+                signature:
+                  type: string
+                timestamp:
+                  type: integer
+              x-examples:
+                Example 1:
+                  username: '919322074403'
+                  pwd: Aa123456
+                  phonetype: 0
+                  logintype: mobile
+                  language: 0
+                  random: c62fb86ab9994a2a9a29e79a4a06251e
+                  signature: FA7FC42874686C1649F626D13B93F276
+                  timestamp: 1747809473
+            examples:
+              Example 1:
+                value:
+                  refreshToken: string
+                  language: string
+                  random: string
+                  signature: string
+                  timestamp: 0
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta'
+                  data:
+                    $ref: '#/components/schemas/Token'
+              examples:
+                Example 1:
+                  value:
+                    meta:
+                      code: 0
+                      msg: Succeed
+                      msgCode: 0
+                      serviceTime: 1747635221779
+                    data:
+                      accessToken: string
+                      expiresIn: 0
+                      refreshToken: string
+                      refreshExpiresIn: 0
+      servers:
+        - url: 'http://localhost:3000'
+      x-stoplight:
+        id: 2ji18edsyd53r
+  /api/auth/logout:
+    post:
+      tags:
+        - auth
+      summary: Logout
+      operationId: post-api-auth-logout
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                refreshToken:
+                  type: string
+              x-examples:
+                Example 1:
+                  username: '919322074403'
+                  pwd: Aa123456
+                  phonetype: 0
+                  logintype: mobile
+                  language: 0
+                  random: c62fb86ab9994a2a9a29e79a4a06251e
+                  signature: FA7FC42874686C1649F626D13B93F276
+                  timestamp: 1747809473
+            examples:
+              Example 1:
+                value:
+                  idToken: token
+                  logintype: mobile
+                  language: 0
+                  random: c62fb86ab9994a2a9a29e79a4a06251e
+                  signature: FA7FC42874686C1649F626D13B93F276
+                  timestamp: 1747809473
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta'
+                  data:
+                    type: object
+              examples:
+                Example 1:
+                  value:
+                    meta:
+                      code: 0
+                      msg: Succeed
+                      msgCode: 0
+                      serviceTime: 1747635221779
+                    data: {}
+      servers:
+        - url: 'http://localhost:3000'
+      x-stoplight:
+        id: helt3bs4sfpz4
+components:
+  schemas:
+    Meta:
+      type: object
+      title: Meta
+      properties:
+        code:
+          type: number
+          description: 'response code '
+          default: 0
+          examples:
+            - 0
+        msg:
+          type: string
+          description: 'response message '
+          default: Succeed
+          examples:
+            - Succeed
+        msgCode:
+          type: number
+          default: 0
+          examples:
+            - 0
+      examples:
+        - code: 0
+          msg: Succeed
+          msgCode: 0
+          serviceTime: 1747635221779
+      x-stoplight:
+        id: nb0y8lymf0ujm
+    User:
+      type: object
+      title: User
+      properties:
+        id:
+          type: integer
+          description: Unique identifier for the given user.
+        email:
+          type: string
+          description: email
+          format: email
+        nickName:
+          type: string
+          description: nick name
+          examples:
+            - Alice
+        language:
+          type: string
+          description: language
+          default: en-US
+          examples:
+            - en-US
+        photo:
+          type: string
+          default: '1'
+          examples:
+            - '1'
+      required:
+        - id
+        - email
+      examples:
+        - id: 0
+          email: user@example.com
+          nickName: Alice
+          language: en-US
+          userPhoto: '1'
+      x-stoplight:
+        id: hegx4b9pmvk7h
+    LotteryIssue:
+      type: object
+      properties:
+        issueNumber:
+          type: string
+          description: 期号，唯一标识一次开奖
+        number:
+          type: string
+          description: 开奖号码
+        color:
+          type: string
+          description: 号码对应的颜色，如red、green
+        premium:
+          type: string
+          description: 总奖池金额
+        sum:
+          type: integer
+          description: 号码的数值求和
+        blockId:
+          type: string
+          description: 区块链对应的区块ID
+        blockNumber:
+          type: integer
+          description: 区块链区块高度
+        blockTimestamp:
+          type: integer
+          description: 区块链区块时间戳（毫秒）
+      examples:
+        - issueNumber: '20250519103010538'
+          number: '3'
+          color: green
+          premium: '3'
+          sum: 3
+          blockId: 00000000044faa309768a6d0caca6361dd7dfc28c927ce1d55ea4bc2c555ea43
+          blockNumber: 72329776
+          blockTimestamp: 1747645074000
+      x-examples:
+        Example 1:
+          issueNumber: string
+          number: string
+          color: string
+          premium: string
+          sum: 0
+          blockId: string
+          blockNumber: 0
+          blockTimestamp: 0
+      x-stoplight:
+        id: wnfmoqj14vsrw
+    Pagination:
+      type: object
+      properties:
+        pageNo:
+          type: integer
+        totalPage:
+          type: integer
+        totalCount:
+          type: integer
+      examples:
+        - pageNo: 0
+          totalPage: 0
+          totalCount: 0
+      x-examples:
+        Example 1:
+          pageNo: 1
+          totalPage: 50
+          totalCount: 500
+      x-stoplight:
+        id: 5akwwaip9ij9i
+    LotteryGameInfo:
+      type: object
+      properties:
+        gameCode:
+          type: string
+        status:
+          type: integer
+          description: 启用状态
+          default: 1
+          examples:
+            - 1
+        betScopes:
+          type: array
+          items:
+            type: integer
+        betMultiples:
+          type: array
+          items:
+            type: integer
+        webSocketUrl:
+          type: string
+        rates:
+          type: array
+          items:
+            $ref: '#/components/schemas/LotteryGameRate'
+      examples:
+        - gameCode: Go_1M
+          status: 1
+          betScopes:
+            - 1
+            - 10
+            - 100
+            - 1000
+          betMultiples:
+            - 1
+            - 5
+            - 10
+            - 20
+            - 50
+            - 100
+          webSocketUrl: ''
+          rates:
+            - playTypeId: 119
+              playType: BigSmall
+              playBet: big
+              state: 1
+              playRate: 2
+            - playTypeId: 115
+              playType: Color
+              playBet: violet
+              state: 1
+              playRate: 4.5
+            - playTypeId: 112
+              playType: Color
+              playBet: green
+              state: 1
+              playRate: 2
+            - playTypeId: 113
+              playType: Color
+              playBet: red
+              state: 1
+              playRate: 2
+            - playTypeId: 117
+              playType: Color
+              playBet: red
+              state: 1
+              playRate: 1.5
+            - playTypeId: 114
+              playType: Color
+              playBet: violet
+              state: 1
+              playRate: 4.5
+            - playTypeId: 120
+              playType: BigSmall
+              playBet: small
+              state: 1
+              playRate: 2
+            - playTypeId: 118
+              playType: Num
+              playBet: 0-9
+              state: 1
+              playRate: 9
+            - playTypeId: 116
+              playType: Color
+              playBet: green
+              state: 1
+              playRate: 1.5
+      x-examples:
+        Example 1:
+          state: 1
+          betScopes:
+            - 1
+            - 10
+            - 100
+            - 1000
+          betMultiples:
+            - 1
+            - 5
+            - 10
+            - 20
+            - 50
+            - 100
+          webSocketUrl: ''
+          rates:
+            - playTypeId: 119
+              playType: BigSmall
+              playBet: big
+              state: 1
+              playRate: 2
+            - playTypeId: 115
+              playType: Color
+              playBet: violet
+              state: 1
+              playRate: 4.5
+            - playTypeId: 112
+              playType: Color
+              playBet: green
+              state: 1
+              playRate: 2
+            - playTypeId: 113
+              playType: Color
+              playBet: red
+              state: 1
+              playRate: 2
+            - playTypeId: 117
+              playType: Color
+              playBet: red
+              state: 1
+              playRate: 1.5
+            - playTypeId: 114
+              playType: Color
+              playBet: violet
+              state: 1
+              playRate: 4.5
+            - playTypeId: 120
+              playType: BigSmall
+              playBet: small
+              state: 1
+              playRate: 2
+            - playTypeId: 118
+              playType: Num
+              playBet: 0-9
+              state: 1
+              playRate: 9
+            - playTypeId: 116
+              playType: Color
+              playBet: green
+              state: 1
+              playRate: 1.5
+      x-stoplight:
+        id: 93e9ugkqjded1
+    LotteryGameRate:
+      type: object
+      properties:
+        playTypeId:
+          type: integer
+        playType:
+          type: string
+        playBet:
+          type: string
+        state:
+          type: integer
+        playRate:
+          type: number
+      examples:
+        - playTypeId: 116
+          playType: Color
+          playBet: green
+          state: 1
+          playRate: 1.5
+      x-examples:
+        Example 1:
+          playTypeId: 116
+          playType: Color
+          playBet: green
+          state: 1
+          playRate: 1.5
+      x-stoplight:
+        id: r7zj888019zdm
+    LotteryBet:
+      type: object
+      properties:
+        gameCode:
+          type: string
+        issueNumber:
+          type: string
+        bets:
+          $ref: '#/components/schemas/LotteryPlayBetType'
+      examples:
+        - gameCode: Go_1M
+          issueNumber: '20250519001'
+          play_types:
+            - playTypeId: 119
+              playBet: big
+              amount: 10
+              multiple: 1
+            - playTypeId: 112
+              playBet: green
+              amount: 100
+              multiple: 5
+      x-examples:
+        Example 1:
+          gameCode: TrxWinGo_1M
+          issueNumber: '20250519001'
+          bets:
+            - playTypeId: 119
+              playBet: big
+              amount: 10
+              multiple: 1
+            - playTypeId: 112
+              playBet: green
+              amount: 100
+              multiple: 5
+          clientSeed: a1b2c3d4
+          source: web
+      x-stoplight:
+        id: 04namoogve1ci
+    LotteryPlayBetType:
+      type: object
+      properties:
+        playTypeId:
+          type: integer
+          description: 投注类型 ID
+        playBet:
+          type: string
+          description: 下注内容，如 big、green 等
+        amount:
+          type: integer
+          description: 单注下注金额
+        multiple:
+          type: integer
+          description: 倍数，例如 1 倍、5 倍、10 倍
+      examples:
+        - playTypeId: 119
+          playBet: big
+          amount: 10
+          multiple: 1
+      x-examples:
+        Example 1:
+          playTypeId: 119
+          playBet: big
+          amount: 10
+          multiple: 1
+      x-stoplight:
+        id: d4u2e6nwlisix
+    Balance:
+      type: object
+      title: Balance
+      properties:
+        userId:
+          type: number
+          description: 用户ID
+        uBalance:
+          type: number
+          description: usdt 余额
+        ppBalance:
+          type: number
+          description: pp 余额
+      x-stoplight:
+        id: rv14sjco0z61t
+    LotteryTrendStatistic:
+      type: object
+      properties:
+        position:
+          type: integer
+          description: ' 数字出现在的位数（第几位）'
+        number:
+          type: integer
+          description: 号码，0~9
+        missingCount:
+          type: integer
+          description: 当前遗漏期数（连续未出现的次数）
+        avgMissing:
+          type: integer
+          description: 平均遗漏值（历史总遗漏 / 出现次数）
+        openCount:
+          type: integer
+          description: 开奖总次数（在统计期内此号出现的次数）
+        maxContinuous:
+          type: integer
+          description: 最大连出次数（最大连续开奖次数）
+      examples:
+        - position: 1
+          number: 7
+          missingCount: 20
+          avgMissing: 11
+          openCount: 7
+          maxContinuous: 1
+      x-examples:
+        Example 1:
+          position: 1
+          number: 0
+          missingCount: 9
+          avgMissing: 11
+          openCount: 7
+          maxContinuous: 3
+      x-stoplight:
+        id: nsry11joykhph
+    LotteryWinRecord:
+      type: object
+      properties:
+        ganmeCode:
+          type: string
+        issueNumber:
+          type: integer
+        userPhoto:
+          type: string
+        nickName:
+          type: string
+        betAmount:
+          type: integer
+        amount:
+          type: number
+        winTime:
+          type: string
+        number:
+          type: string
+        color:
+          type: string
+        playBet:
+          type: string
+      examples:
+        - ganmeCode: string
+          issueNumber: 0
+          userPhoto: string
+          nickName: string
+          betAmount: 0
+          amount: 0
+          winTime: string
+          number: string
+          color: string
+          playBet: string
+      x-examples:
+        Example 1:
+          type: '30'
+          typeName: WinGo_30Sec
+          userPhoto: '3'
+          nickName: MemberLMPOUXQR
+          betAmount: 88
+          amount: 129.36
+          winTime: '2025-05-19 10:49:27'
+          showType: 11
+          imgUrl: 'https://ossimg.envyenvelope.com/daman/lotterycategory/lotterycategory_20240123160120h4kw.png'
+      x-stoplight:
+        id: br4s9wpe4fgeu
+    ProfitRank:
+      type: object
+      title: ProfitRank
+      properties:
+        winRecords:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProfitWinRecord'
+        withdrawalRecords:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProfitWithdrawalRecord'
+      examples:
+        - winRecords:
+            - type: '30'
+              typeName: WinGo_30Sec
+              userPhoto: '3'
+              nickName: MemberLMPOUXQR
+              betAmount: 88
+              amount: 129.36
+              winTime: '2025-05-19 10:49:27'
+              showType: 11
+              imgUrl: 'https://ossimg.envyenvelope.com/daman/lotterycategory/lotterycategory_20240123160120h4kw.png'
+          withdrawalRecords:
+            - userID: 16563638
+              userPhoto: '20'
+              nickName: Dipanshu
+              price: 19758760
+              time: '2025-05-19'
+              typeName: Withdrawal
+      x-stoplight:
+        id: yz2usobonxc4j
+    ProfitWinRecord:
+      type: object
+      properties:
+        type:
+          type: string
+          description: 游戏类型编号
+        typeName:
+          type: string
+          description: 游戏类型名称
+        userPhoto:
+          type: string
+          description: 用户头像编号或 ID
+        nickName:
+          type: string
+          description: 用户昵称
+        betAmount:
+          type: number
+          description: 投注金额
+        amount:
+          type: number
+          description: 获得金额（即赢得的奖金）
+        winTime:
+          type: string
+          description: 赢得时间
+        showType:
+          type: integer
+          description: 展示类型
+        imgUrl:
+          type: string
+          description: 游戏图标
+      examples:
+        - type: '30'
+          typeName: WinGo_30Sec
+          userPhoto: '3'
+          nickName: MemberLMPOUXQR
+          betAmount: 88
+          amount: 129.36
+          winTime: '2025-05-19 10:49:27'
+          showType: 11
+          imgUrl: 'https://ossimg.envyenvelope.com/daman/lotterycategory/lotterycategory_20240123160120h4kw.png'
+      x-examples:
+        Example 1:
+          type: '30'
+          typeName: WinGo_30Sec
+          userPhoto: '6'
+          nickName: MemberMRGWMTET
+          betAmount: 1000
+          amount: 1960
+          winTime: '2025-05-19 10:49:27'
+          showType: 11
+          imgUrl: 'https://ossimg.envyenvelope.com/daman/lotterycategory/lotterycategory_20240123160120h4kw.png'
+      x-stoplight:
+        id: yoopcw8yhiho1
+    ProfitWithdrawalRecord:
+      type: object
+      properties:
+        userID:
+          type: integer
+          description: 用户唯一标识
+        userPhoto:
+          type: string
+          description: 用户头像编号
+        nickName:
+          type: string
+          description: 用户昵称
+        price:
+          type: integer
+          description: 提现金额
+        time:
+          type: string
+          description: 提现日期
+        typeName:
+          type: string
+          description: 类型名（提现）
+      examples:
+        - userID: 16563638
+          userPhoto: '20'
+          nickName: 'Dipanshu '
+          price: 19758760
+          time: '2025-05-19'
+          typeName: Penarikan
+      x-examples:
+        Example 1:
+          userID: 16563638
+          userPhoto: '20'
+          nickName: 'Dipanshu '
+          price: 19758760
+          time: '2025-05-19'
+          typeName: Penarikan
+          winTime: '2025-05-19'
+      x-stoplight:
+        id: rmsbepy6hg0xk
+    ScratchTheme:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+          default: Number777
+          examples:
+            - Number777
+        price:
+          type: number
+        status:
+          type: integer
+        topPrizeAmount:
+          type: number
+        symbolName:
+          type: string
+        cardRows:
+          type: integer
+        cardCols:
+          type: integer
+      examples:
+        - id: 0
+          name: Number777
+          price: 0
+          status: 0
+          topPrizeAmount: 0
+          symbolName: '7'
+          cardRows: 0
+          cardCols: 0
+      x-examples:
+        Example 1:
+          id: 1
+          name: Number 777
+          price: '2.00'
+          status: 1
+      x-stoplight:
+        id: 50ragt6wjgjm4
+    ScratchCard:
+      type: object
+      properties:
+        id:
+          type: integer
+        cardNo:
+          type: string
+        userId:
+          type: integer
+        themeId:
+          type: integer
+        status:
+          type: integer
+          description: 状态（0=未刮，1=已刮）
+          default: 0
+          examples:
+            - 1
+        prizeLevel:
+          type: integer
+        rewardAmount:
+          type: number
+        createdAt:
+          type: integer
+        revealedAt:
+          type: integer
+      examples:
+        - id: 0
+          cardNo: string
+          userId: 0
+          themeId: 0
+          status: 1
+          prizeLevel: 0
+          rewardAmount: 0
+          createdAt: 0
+          revealedAt: 0
+      x-examples:
+        Example 1:
+          id: 1001
+          card_no: '892193948122'
+          user_id: 123
+          theme_id: 1
+          status: 0
+          prize_level: null
+          reward_amount: null
+          created_at: '2025-05-14T10:00:00Z'
+          revealed_at: null
+      x-stoplight:
+        id: lkg2mxp7fhrzs
+    ScratchGrid:
+      type: object
+      title: ScratchGrid
+      properties:
+        gridRow:
+          type: integer
+        gridCol:
+          type: integer
+        cardId:
+          type: integer
+        revealed:
+          type: boolean
+        symbolName:
+          type: string
+      examples:
+        - gridRow: 0
+          gridCol: 0
+          cardId: 0
+          revealed: true
+          symbolName: x
+      x-stoplight:
+        id: zueyaykhskqa1
+    LotteryGame:
+      type: object
+      properties:
+        id:
+          type: integer
+        categoryCode:
+          type: string
+        categoryName:
+          type: string
+        state:
+          type: integer
+        sort:
+          type: integer
+        categoryImg:
+          type: string
+        amount:
+          type: 'null'
+        gameCode:
+          type: string
+      examples:
+        - id: 4
+          categoryCode: Win Go
+          categoryName: WinGo彩票
+          state: 1
+          sort: 0
+          categoryImg: 'https://ossimg.envyenvelope.com/daman/lotterycategory/lotterycategory_202401231601472sqb.png'
+          amount: 79380000
+          gameCode: WinGo_1M
+      x-examples:
+        Example 1:
+          id: 4
+          categoryCode: Trx Win Go
+          categoryName: TrxWinGo彩票
+          state: 1
+          sort: 0
+          categoryImg: 'https://ossimg.envyenvelope.com/daman/lotterycategory/lotterycategory_202401231601472sqb.png'
+          wingoAmount: null
+          k3Amount: null
+          fiveDAmount: null
+          trxWingoAmount: 79380000
+          motoRaceAmount: null
+          videoWinGoAmount: null
+          gameCode: TrxWinGo_1M
+      x-stoplight:
+        id: 4zxg2c886j0c0
+    ScratchWinRecord:
+      type: object
+      properties:
+        id:
+          type: integer
+        userId:
+          type: integer
+        cardId:
+          type: integer
+        themeId:
+          type: integer
+        prizeLevel:
+          type: integer
+        rewardAmount:
+          type: integer
+        winTime:
+          type: string
+      examples:
+        - id: 901
+          userId: 1001
+          cardId: 5001
+          themeId: 1
+          prizeLevel: 1
+          rewardaAmount: 10000
+          winTime: '2025-05-20T13:00:00Z'
+      x-examples:
+        Example 1:
+          id: 901
+          user_id: 1001
+          card_id: 5001
+          prize_level: 1
+          reward_amount: 10000
+          win_time: '2025-05-20T13:00:00Z'
+      x-stoplight:
+        id: di7e7rge7k11n
+    ScratchThemePrize:
+      type: object
+      properties:
+        id:
+          type: integer
+        level:
+          type: integer
+        name:
+          type: string
+        symbol_count:
+          type: integer
+        symbol_text:
+          type: string
+        quantity:
+          type: integer
+        probability:
+          type: number
+        reward:
+          type: integer
+        description:
+          type: string
+      examples:
+        - id: 101
+          level: 1
+          name: 一等奖
+          symbol_count: 3
+          symbol_text: 狮子
+          quantity: 10
+          probability: 0.01
+          reward: 10000
+          description: 三个狮子图标
+      x-examples:
+        Example 1:
+          id: 101
+          level: 1
+          name: 一等奖
+          symbol_count: 3
+          symbol_text: 狮子
+          quantity: 10
+          probability: 0.01
+          reward: 10000
+          description: 三个狮子图标
+      x-stoplight:
+        id: 5jxhxnlzf08dp
+    GachaIssue:
+      type: object
+      properties:
+        issueNumber:
+          type: integer
+        issueDate:
+          type: string
+        rewardPool:
+          type: number
+        totalSets:
+          type: integer
+        status:
+          type: integer
+          description: status(0=pending，1=drawn)
+        totalUser:
+          type: integer
+      examples:
+        - issueNumber: 0
+          issueDate: '2025-05-20'
+          rewardPool: 0
+          totalSets: 10
+          status: 0
+          totalUser: 10
+      x-examples:
+        Example 1:
+          issue_number: 20250520001
+          issue_date: '2025-05-20'
+          reward_pool: '1000000.00'
+          total_sets: 10
+          status: 0
+      x-stoplight:
+        id: vnvdwltxacbw2
+    CollectionStatus:
+      type: object
+      properties:
+        collectedSets:
+          type: integer
+        rewardEstimate:
+          type: number
+      examples:
+        - collectedSets: 0
+          rewardEstimate: 100
+      x-examples:
+        Example 1:
+          collectedSets: 2
+          rewardEstimate: '370.21'
+      x-stoplight:
+        id: 0fgx0z70o4vd9
+    GachaWinRecord:
+      type: object
+      properties:
+        userId:
+          type: integer
+        userNickName:
+          type: string
+        photo:
+          type: integer
+        collectSets:
+          type: integer
+        issueNumber:
+          type: integer
+        rewardAmount:
+          type: number
+      examples:
+        - userId: 0
+          userNickName: string
+          photo: 0
+          collectSets: 0
+          issueNumber: 0
+          rewardAmount: 0
+      x-examples:
+        Example 1:
+          issueDate: '2025-05-18'
+          rewardPool: '7521.00'
+          collectedUsers: 11
+          averageReward: '683.73'
+      x-stoplight:
+        id: x05ve9qfp50zv
+    GachaDraw:
+      type: object
+      title: GachaDraw
+      properties:
+        drawType:
+          type: string
+          description: ' normal / guarantee_rare / guarantee_legendary'
+        cards:
+          type: array
+          items:
+            $ref: '#/components/schemas/GachaCard'
+      examples:
+        - drawType: normal
+          cards:
+            - cardId: 1
+              cardName: snake
+              rarity: normal
+              quantity: 1
+      x-stoplight:
+        id: w7lfwekcpjzp4
+    GachaCard:
+      type: object
+      properties:
+        cardId:
+          type: integer
+        cardName:
+          type: string
+        rarity:
+          type: string
+        quantity:
+          type: integer
+      examples:
+        - cardId: 0
+          cardName: string
+          rarity: string
+          quantity: 0
+      x-examples:
+        Example 1:
+          card_id: 1
+          card_name: 猫
+          rarity: normal
+          quantity: 4
+      x-stoplight:
+        id: rq3zp93x0ln0l
+    Token:
+      type: object
+      properties:
+        accessToken:
+          type: string
+        expiresIn:
+          type: integer
+        refreshToken:
+          type: string
+        refreshExpiresIn:
+          type: integer
+      examples:
+        - accessToken: string
+          expiresIn: 0
+          refreshToken: string
+          refreshExpiresIn: 0
+      x-examples:
+        Example 1:
+          access_token: eyJhbGciOiJIUzI1NiIsInR5cCI6...
+          expires_in: 900
+          refresh_token: 21e8b12d-...-9373a91a
+          refresh_expires_in: 604800
+      x-stoplight:
+        id: 6jxm6etwswwc3
