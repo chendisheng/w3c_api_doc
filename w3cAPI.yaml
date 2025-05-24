@@ -2031,7 +2031,7 @@ components:
             - en-US
         photo:
           type: string
-          default: 1
+          default: '1'
           examples:
             - '1'
         aboutMe:
@@ -2696,23 +2696,6 @@ components:
         id: zueyaykhskqa1
     LotteryGame:
       type: object
-      properties:
-        id:
-          type: integer
-        categoryCode:
-          type: string
-        categoryName:
-          type: string
-        state:
-          type: integer
-        sort:
-          type: integer
-        categoryImg:
-          type: string
-        amount:
-          type: 'null'
-        gameCode:
-          type: string
       examples:
         - id: 4
           categoryCode: Win Go
@@ -2739,6 +2722,25 @@ components:
           gameCode: TrxWinGo_1M
       x-stoplight:
         id: 4zxg2c886j0c0
+      properties:
+        id:
+          type: integer
+        categoryCode:
+          type: string
+        categoryName:
+          type: string
+        state:
+          type: integer
+        sort:
+          type: integer
+        categoryImg:
+          type: string
+        amount:
+          type:
+            - number
+            - 'null'
+        gameCode:
+          type: string
     ScratchWinRecord:
       type: object
       properties:
