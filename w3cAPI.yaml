@@ -39,6 +39,7 @@ paths:
                       nickName: Alice
                       language: en-US
                       userPhoto: '1'
+                      aboutMe: about me
       servers:
         - url: 'http://localhost:3000'
       x-stoplight:
@@ -97,6 +98,7 @@ paths:
                       nickName: Alice
                       language: en-US
                       userPhoto: '1'
+                      aboutMe: about me
       servers:
         - url: 'http://localhost:3000'
       x-stoplight:
@@ -1996,6 +1998,18 @@ components:
     User:
       type: object
       title: User
+      examples:
+        - id: 0
+          email: user@example.com
+          nickName: Alice
+          language: en-US
+          userPhoto: '1'
+          aboutMe: about me
+      x-stoplight:
+        id: hegx4b9pmvk7h
+      required:
+        - id
+        - email
       properties:
         id:
           type: integer
@@ -2017,20 +2031,13 @@ components:
             - en-US
         photo:
           type: string
-          default: '1'
+          default: 1
           examples:
             - '1'
-      required:
-        - id
-        - email
-      examples:
-        - id: 0
-          email: user@example.com
-          nickName: Alice
-          language: en-US
-          userPhoto: '1'
-      x-stoplight:
-        id: hegx4b9pmvk7h
+        aboutMe:
+          type: string
+          x-stoplight:
+            id: xvz5k5aor42je
     LotteryIssue:
       type: object
       properties:
