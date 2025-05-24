@@ -32,7 +32,7 @@ paths:
                       code: 0
                       msg: Succeed
                       msgCode: 0
-                      serviceTime: 1747635221779
+                      serviceTime: '2025-05-24T08:47:22Z'
                     data:
                       id: 0
                       email: user@example.com
@@ -90,7 +90,7 @@ paths:
                       code: 0
                       msg: Succeed
                       msgCode: 0
-                      serviceTime: 1747635221779
+                      serviceTime: '2025-05-24T08:47:22Z'
                     data:
                       id: 0
                       email: user@example.com
@@ -184,7 +184,7 @@ paths:
                       code: 0
                       msg: Succeed
                       msgCode: 0
-                      serviceTime: 1747635221779
+                      serviceTime: '2025-05-24T08:47:22Z'
                     data:
                       issues:
                         - issueNumber: '20250519103010538'
@@ -255,10 +255,10 @@ paths:
                       code: 0
                       msg: Succeed
                       msgCode: 0
-                      serviceTime: 1747635221779
+                      serviceTime: '2025-05-24T08:47:22Z'
                     data:
                       gameCode: Go_1M
-                      state: 1
+                      status: 1
                       betScopes:
                         - 1
                         - 10
@@ -378,7 +378,7 @@ paths:
                       code: 0
                       msg: Succeed
                       msgCode: 0
-                      serviceTime: 1747635221779
+                      serviceTime: '2025-05-24T08:47:22Z'
                     data:
                       bets:
                         gameCode: Go_1M
@@ -443,7 +443,7 @@ paths:
                       code: 0
                       msg: Succeed
                       msgCode: 0
-                      serviceTime: 1747635221779
+                      serviceTime: '2025-05-24T08:47:22Z'
                     data: {}
       servers:
         - url: 'http://localhost:3000'
@@ -495,7 +495,7 @@ paths:
                       code: 0
                       msg: Succeed
                       msgCode: 0
-                      serviceTime: 1747635221779
+                      serviceTime: '2025-05-24T08:47:22Z'
                     data:
                       userId: 0
                       uBalance: 0
@@ -570,7 +570,7 @@ paths:
                       code: 0
                       msg: Succeed
                       msgCode: 0
-                      serviceTime: 1747635221779
+                      serviceTime: '2025-05-24T08:47:22Z'
                     data:
                       trendStatistics:
                         - position: 1
@@ -646,18 +646,19 @@ paths:
                       code: 0
                       msg: Succeed
                       msgCode: 0
-                      serviceTime: 1747635221779
+                      serviceTime: '2025-05-24T08:47:22Z'
                     data:
                       winRecords:
-                        - gameCode: WinGo_30S
-                          issueNumber: 20250520001
-                          userPhoto: '3'
-                          nickName: MemberLMPOUXQR
-                          betAmount: 88
-                          amount: 129.36
-                          winTime: '2025-05-19 10:49:27'
-                          showType: 11
-                          imgUrl: 'https://ossimg.envyenvelope.com/daman/lotterycategory/lotterycategory_20240123160120h4kw.png'
+                        - ganmeCode: string
+                          issueNumber: 0
+                          userPhoto: string
+                          nickName: string
+                          betAmount: 0
+                          amount: 0
+                          winTime: string
+                          number: string
+                          color: string
+                          playBet: string
                       pagination:
                         pageNo: 0
                         totalPage: 0
@@ -729,7 +730,7 @@ paths:
                       code: 0
                       msg: Succeed
                       msgCode: 0
-                      serviceTime: 1747635221779
+                      serviceTime: '2025-05-24T08:47:22Z'
                     data:
                       winRecords:
                         - ganmeCode: string
@@ -741,6 +742,7 @@ paths:
                           winTime: string
                           number: string
                           color: string
+                          playBet: string
                       pagination:
                         pageNo: 0
                         totalPage: 0
@@ -803,7 +805,7 @@ paths:
                       code: 0
                       msg: Succeed
                       msgCode: 0
-                      serviceTime: 1747635221779
+                      serviceTime: '2025-05-24T08:47:22Z'
                     data:
                       winRecords:
                         - type: '30'
@@ -882,7 +884,7 @@ paths:
                       code: 0
                       msg: Succeed
                       msgCode: 0
-                      serviceTime: 1747635221779
+                      serviceTime: '2025-05-24T08:47:22Z'
                     data:
                       cardIds:
                         - string
@@ -920,7 +922,7 @@ paths:
                       code: 0
                       msg: Succeed
                       msgCode: 0
-                      serviceTime: 1747635221779
+                      serviceTime: '2025-05-24T08:47:22Z'
                     data:
                       themes:
                         - id: 0
@@ -928,7 +930,7 @@ paths:
                           price: 0
                           status: 0
                           topPrizeAmount: 0
-                          symbolName: string
+                          symbolName: '7'
                           cardRows: 0
                           cardCols: 0
       servers:
@@ -998,14 +1000,14 @@ paths:
                       code: 0
                       msg: Succeed
                       msgCode: 0
-                      serviceTime: 1747635221779
+                      serviceTime: '2025-05-24T08:47:22Z'
                     data:
                       cards:
                         - id: 0
                           cardNo: string
                           userId: 0
                           themeId: 0
-                          status: 0
+                          status: 1
                           prizeLevel: 0
                           rewardAmount: 0
                           createdAt: 0
@@ -1061,7 +1063,7 @@ paths:
                       code: 0
                       msg: Succeed
                       msgCode: 0
-                      serviceTime: 1747635221779
+                      serviceTime: '2025-05-24T08:47:22Z'
                     data:
                       gridRow: 0
                       gridCol: 0
@@ -1109,7 +1111,7 @@ paths:
                       code: 0
                       msg: Succeed
                       msgCode: 0
-                      serviceTime: 1747635221779
+                      serviceTime: '2025-05-24T08:47:22Z'
                     data:
                       id: 0
                       cardNo: string
@@ -1163,6 +1165,24 @@ paths:
                         type: array
                         items:
                           $ref: '#/components/schemas/LotteryGame'
+              examples:
+                Example 1:
+                  value:
+                    meta:
+                      code: 0
+                      msg: Succeed
+                      msgCode: 0
+                      serviceTime: '2025-05-24T08:47:22Z'
+                    data:
+                      lottery:
+                        - id: 4
+                          categoryCode: Win Go
+                          categoryName: WinGo彩票
+                          state: 1
+                          sort: 0
+                          categoryImg: 'https://ossimg.envyenvelope.com/daman/lotterycategory/lotterycategory_202401231601472sqb.png'
+                          amount: 79380000
+                          gameCode: WinGo_1M
       servers:
         - url: 'http://localhost:3000'
       x-stoplight:
@@ -1203,7 +1223,7 @@ paths:
                       code: 0
                       msg: Succeed
                       msgCode: 0
-                      serviceTime: 1747635221779
+                      serviceTime: '2025-05-24T08:47:22Z'
                     data:
                       grids:
                         - gridRow: 0
@@ -1245,7 +1265,7 @@ paths:
                       code: 0
                       msg: Succeed
                       msgCode: 0
-                      serviceTime: 1747635221779
+                      serviceTime: '2025-05-24T08:47:22Z'
                     data:
                       winRecords:
                         - id: 901
@@ -1282,10 +1302,31 @@ paths:
                   meta:
                     $ref: '#/components/schemas/Meta'
                   data:
-                    type: object
-                    properties:
-                      '':
-                        type: string
+                    $ref: '#/components/schemas/ScratchCard'
+              examples:
+                Example 1:
+                  value:
+                    meta:
+                      code: 0
+                      msg: Succeed
+                      msgCode: 0
+                      serviceTime: '2025-05-24T08:47:22Z'
+                    data:
+                      id: 0
+                      cardNo: string
+                      userId: 0
+                      themeId: 0
+                      status: 0
+                      prizeLevel: 0
+                      rewardAmount: 0
+                      createdAt: 0
+                      revealedAt: 0
+                      grids:
+                        gridRow: 0
+                        gridCol: 0
+                        cardId: 0
+                        revealed: true
+                        symbolName: x
       servers:
         - url: 'http://localhost:3000'
       x-stoplight:
@@ -1326,7 +1367,7 @@ paths:
                       code: 0
                       msg: Succeed
                       msgCode: 0
-                      serviceTime: 1747635221779
+                      serviceTime: '2025-05-24T08:47:22Z'
                     data:
                       prizes:
                         - id: 101
@@ -1348,7 +1389,37 @@ paths:
         - gacha
       summary: Get current issue
       operationId: get-api-v1-gacha-issue
-      responses: {}
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta'
+                    x-stoplight:
+                      id: 9aw98zashtvvr
+                  data:
+                    $ref: '#/components/schemas/GachaIssue'
+                    x-stoplight:
+                      id: pm6tcugi9vf4w
+              examples:
+                Example 1:
+                  value:
+                    meta:
+                      code: 0
+                      msg: Succeed
+                      msgCode: 0
+                      serviceTime: '2025-05-24T08:47:22Z'
+                    data:
+                      issueNumber: 0
+                      issueDate: '2025-05-20'
+                      rewardPool: 0
+                      totalSets: 10
+                      status: 0
+                      totalUser: 10
       servers:
         - url: 'http://localhost:3000'
       x-stoplight:
@@ -1385,14 +1456,15 @@ paths:
                       code: 0
                       msg: Succeed
                       msgCode: 0
-                      serviceTime: 1747635221779
+                      serviceTime: '2025-05-24T08:47:22Z'
                     data:
                       issues:
                         - issueNumber: 0
                           issueDate: '2025-05-20'
                           rewardPool: 0
-                          totalSets: 0
+                          totalSets: 10
                           status: 0
+                          totalUser: 10
                       pagination:
                         pageNo: 0
                         totalPage: 0
@@ -1437,7 +1509,35 @@ paths:
                     type: object
                     properties:
                       cards:
-                        type: string
+                        type: array
+                        x-stoplight:
+                          id: ztiyl82ijpeh9
+                        items:
+                          $ref: '#/components/schemas/GachaCard'
+                          x-stoplight:
+                            id: dk1xakvsn6zed
+                      pagination:
+                        $ref: '#/components/schemas/Pagination'
+                        x-stoplight:
+                          id: jpoy7y0kk36io
+              examples:
+                Example 1:
+                  value:
+                    meta:
+                      code: 0
+                      msg: Succeed
+                      msgCode: 0
+                      serviceTime: '2025-05-24T08:47:22Z'
+                    data:
+                      cards:
+                        - cardId: 0
+                          cardName: string
+                          rarity: string
+                          quantity: 0
+                      pagination:
+                        pageNo: 0
+                        totalPage: 0
+                        totalCount: 0
       servers:
         - url: 'http://localhost:3000'
       x-stoplight:
@@ -1467,7 +1567,7 @@ paths:
                       code: 0
                       msg: Succeed
                       msgCode: 0
-                      serviceTime: 1747635221779
+                      serviceTime: '2025-05-24T08:47:22Z'
                     data:
                       collectedSets: 0
                       rewardEstimate: 100
@@ -1523,7 +1623,7 @@ paths:
                       code: 0
                       msg: Succeed
                       msgCode: 0
-                      serviceTime: 1747635221779
+                      serviceTime: '2025-05-24T08:47:22Z'
                     data:
                       records:
                         - userId: 0
@@ -1588,7 +1688,7 @@ paths:
                       code: 0
                       msg: Succeed
                       msgCode: 0
-                      serviceTime: 1747635221779
+                      serviceTime: '2025-05-24T08:47:22Z'
                     data:
                       records:
                         - userId: 0
@@ -1638,11 +1738,26 @@ paths:
                     $ref: '#/components/schemas/Meta'
                   data:
                     $ref: '#/components/schemas/GachaDraw'
+              examples:
+                Example 1:
+                  value:
+                    meta:
+                      code: 0
+                      msg: Succeed
+                      msgCode: 0
+                      serviceTime: '2025-05-24T08:47:22Z'
+                    data:
+                      drawType: normal
+                      cards:
+                        - cardId: 1
+                          cardName: snake
+                          rarity: normal
+                          quantity: 1
       servers:
         - url: 'http://localhost:3000'
       x-stoplight:
         id: u12soialhwy9n
-  /api/auth/login:
+  /api/v1/auth/login:
     post:
       tags:
         - auth
@@ -1704,7 +1819,7 @@ paths:
                       code: 0
                       msg: Succeed
                       msgCode: 0
-                      serviceTime: 1747635221779
+                      serviceTime: '2025-05-24T08:47:22Z'
                     data:
                       accessToken: string
                       expiresIn: 0
@@ -1714,7 +1829,8 @@ paths:
         - url: 'http://localhost:3000'
       x-stoplight:
         id: tyne0dhr3zooy
-  /api/auth/refresh-token:
+    parameters: []
+  /api/v1/auth/refresh-token:
     post:
       tags:
         - auth
@@ -1773,7 +1889,7 @@ paths:
                       code: 0
                       msg: Succeed
                       msgCode: 0
-                      serviceTime: 1747635221779
+                      serviceTime: '2025-05-24T08:47:22Z'
                     data:
                       accessToken: string
                       expiresIn: 0
@@ -1783,7 +1899,8 @@ paths:
         - url: 'http://localhost:3000'
       x-stoplight:
         id: 2ji18edsyd53r
-  /api/auth/logout:
+    parameters: []
+  /api/v1/auth/logout:
     post:
       tags:
         - auth
@@ -1835,17 +1952,25 @@ paths:
                       code: 0
                       msg: Succeed
                       msgCode: 0
-                      serviceTime: 1747635221779
+                      serviceTime: '2025-05-24T08:47:22Z'
                     data: {}
       servers:
         - url: 'http://localhost:3000'
       x-stoplight:
         id: helt3bs4sfpz4
+    parameters: []
 components:
   schemas:
     Meta:
       type: object
       title: Meta
+      examples:
+        - code: 0
+          msg: Succeed
+          msgCode: 0
+          serviceTime: '2025-05-24T08:47:22Z'
+      x-stoplight:
+        id: nb0y8lymf0ujm
       properties:
         code:
           type: number
@@ -1864,13 +1989,10 @@ components:
           default: 0
           examples:
             - 0
-      examples:
-        - code: 0
-          msg: Succeed
-          msgCode: 0
-          serviceTime: 1747635221779
-      x-stoplight:
-        id: nb0y8lymf0ujm
+        serviceTime:
+          type: string
+          x-stoplight:
+            id: bwomoqwmoxc0p
     User:
       type: object
       title: User
@@ -2487,6 +2609,19 @@ components:
         id: 50ragt6wjgjm4
     ScratchCard:
       type: object
+      x-examples:
+        Example 1:
+          id: 1001
+          card_no: '892193948122'
+          user_id: 123
+          theme_id: 1
+          status: 0
+          prize_level: null
+          reward_amount: null
+          created_at: '2025-05-14T10:00:00Z'
+          revealed_at: null
+      x-stoplight:
+        id: lkg2mxp7fhrzs
       properties:
         id:
           type: integer
@@ -2510,29 +2645,26 @@ components:
           type: integer
         revealedAt:
           type: integer
+        grids:
+          $ref: '#/components/schemas/ScratchGrid'
+          x-stoplight:
+            id: q1zx42dqardhg
       examples:
         - id: 0
           cardNo: string
           userId: 0
           themeId: 0
-          status: 1
+          status: 0
           prizeLevel: 0
           rewardAmount: 0
           createdAt: 0
           revealedAt: 0
-      x-examples:
-        Example 1:
-          id: 1001
-          card_no: '892193948122'
-          user_id: 123
-          theme_id: 1
-          status: 0
-          prize_level: null
-          reward_amount: null
-          created_at: '2025-05-14T10:00:00Z'
-          revealed_at: null
-      x-stoplight:
-        id: lkg2mxp7fhrzs
+          grids:
+            gridRow: 0
+            gridCol: 0
+            cardId: 0
+            revealed: true
+            symbolName: x
     ScratchGrid:
       type: object
       title: ScratchGrid
@@ -2788,11 +2920,6 @@ components:
           type: string
         quantity:
           type: integer
-      examples:
-        - cardId: 0
-          cardName: string
-          rarity: string
-          quantity: 0
       x-examples:
         Example 1:
           card_id: 1
@@ -2801,6 +2928,11 @@ components:
           quantity: 4
       x-stoplight:
         id: rq3zp93x0ln0l
+      examples:
+        - cardId: 0
+          cardName: string
+          rarity: string
+          quantity: 0
     Token:
       type: object
       properties:
