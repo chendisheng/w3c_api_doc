@@ -565,6 +565,10 @@ paths:
                         type: array
                         items:
                           $ref: '#/components/schemas/LotteryTrendStatistic'
+                      pagination:
+                        $ref: '#/components/schemas/Pagination'
+                        x-stoplight:
+                          id: s6d59wawmuxws
               examples:
                 Example 1:
                   value:
@@ -581,6 +585,10 @@ paths:
                           avgMissing: 11
                           openCount: 7
                           maxContinuous: 1
+                      pagination:
+                        pageNo: 0
+                        totalPage: 0
+                        totalCount: 0
       servers:
         - url: 'http://localhost:3000'
       x-stoplight:
