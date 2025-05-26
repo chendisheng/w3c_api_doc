@@ -127,7 +127,7 @@ paths:
           description: page no.
           required: true
           schema:
-            type: string
+            type: integer
         - name: language
           in: query
           description: language
@@ -137,12 +137,12 @@ paths:
           in: query
           description: random number
           schema:
-            type: string
+            type: integer
         - name: timestamp
           in: query
           description: request timestamp
           schema:
-            type: string
+            type: integer
         - name: signature
           in: query
           description: 85DC46F83C3635401B6376E5B5A4E148
@@ -150,16 +150,20 @@ paths:
             type: string
             examples:
               - 85DC46F83C3635401B6376E5B5A4E148
-        - name: type
+        - schema:
+            type: integer
           in: query
-          schema:
+          name: pageSize
+          description: page size
+        - schema:
             type: string
             enum:
+              - feature
               - history
-              - future
               - current
-            examples:
-              - future
+          in: query
+          name: type
+          description: 'type '
       responses:
         '200':
           description: OK
