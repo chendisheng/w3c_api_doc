@@ -415,17 +415,13 @@ paths:
             examples:
               Example 1:
                 value:
-                  gameCode: WinGo_1M
-                  issueNumber: '20250519001'
-                  play_types:
+                  gameCode: string
+                  issueNumber: string
+                  playBets:
                     - playTypeId: 119
                       playBet: big
                       amount: 10
                       multiple: 1
-                    - playTypeId: 112
-                      playBet: green
-                      amount: 100
-                      multiple: 5
       responses:
         '201':
           description: Created
@@ -2295,25 +2291,8 @@ components:
         id: r7zj888019zdm
     LotteryBet:
       type: object
-      properties:
-        gameCode:
-          type: string
-        issueNumber:
-          type: string
-        bets:
-          $ref: '#/components/schemas/LotteryPlayBetType'
-      examples:
-        - gameCode: Go_1M
-          issueNumber: '20250519001'
-          play_types:
-            - playTypeId: 119
-              playBet: big
-              amount: 10
-              multiple: 1
-            - playTypeId: 112
-              playBet: green
-              amount: 100
-              multiple: 5
+      x-stoplight:
+        id: 7432k6sln4etv
       x-examples:
         Example 1:
           gameCode: TrxWinGo_1M
@@ -2329,8 +2308,25 @@ components:
               multiple: 5
           clientSeed: a1b2c3d4
           source: web
-      x-stoplight:
-        id: 04namoogve1ci
+      properties:
+        gameCode:
+          type: string
+        issueNumber:
+          type: string
+        playBets:
+          type: array
+          items:
+            $ref: '#/components/schemas/LotteryPlayBetType'
+            x-stoplight:
+              id: fk6094kgui1fh
+      examples:
+        - gameCode: string
+          issueNumber: string
+          playBets:
+            - playTypeId: 119
+              playBet: big
+              amount: 10
+              multiple: 1
     LotteryPlayBetType:
       type: object
       properties:
