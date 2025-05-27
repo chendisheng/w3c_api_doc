@@ -1969,20 +1969,15 @@ paths:
       x-stoplight:
         id: helt3bs4sfpz4
     parameters: []
-  '/api/v1/{categoryCode}/{gameCode}':
+  '/api/v1/lottery/{gameCode}/issue-status':
     parameters:
-      - schema:
-          type: string
-        name: categoryCode
-        in: path
-        required: true
       - schema:
           type: string
         name: gameCode
         in: path
         required: true
     get:
-      summary: Get
+      summary: Get issue info status
       tags: []
       responses:
         '200':
@@ -1997,9 +1992,32 @@ paths:
                     x-stoplight:
                       id: a1mfcnl3e8d6p
                   data:
-                    type: string
+                    $ref: '#/components/schemas/LotteryGameIssue'
                     x-stoplight:
                       id: 311p96gp03fo9
+              examples:
+                Example 1:
+                  value:
+                    meta:
+                      code: 0
+                      msg: Succeed
+                      msgCode: 0
+                      serviceTime: '2025-05-24T08:47:22Z'
+                    data:
+                      gameCode: string
+                      internvalSeconds: 0
+                      previous:
+                        issueNumber: '20250527100010891'
+                        startTime: 0
+                        endTime: 0
+                      current:
+                        issueNumber: '20250527100010892'
+                        startTime: 0
+                        endTime: 0
+                      next:
+                        issueNumber: '20250527100010893'
+                        startTime: 0
+                        endTime: 0
       operationId: get-api-v1-categoryCode-gameCode
       x-stoplight:
         id: 7c7vfn8zstem0
@@ -3022,8 +3040,8 @@ components:
           refresh_expires_in: 604800
       x-stoplight:
         id: 6jxm6etwswwc3
-    LotteryGameIssue:
-      title: LotteryGameIssue
+    LotteryIssueStatus:
+      title: LotteryIssue
       x-stoplight:
         id: vhz697bq70e6o
       type: object
