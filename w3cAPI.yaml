@@ -2048,6 +2048,28 @@ components:
             id: xvz5k5aor42je
     LotteryIssue:
       type: object
+      x-examples:
+        Example 1:
+          issueNumber: string
+          number: string
+          color: string
+          premium: string
+          sum: 0
+          blockId: string
+          blockNumber: 0
+          blockTimestamp: 0
+      x-stoplight:
+        id: wnfmoqj14vsrw
+      examples:
+        - issueNumber: string
+          number: string
+          color: string
+          premium: string
+          sum: 0
+          blockId: string
+          blockNumber: 0
+          blockTimestamp: 0
+          status: pending
       properties:
         issueNumber:
           type: string
@@ -2073,27 +2095,13 @@ components:
         blockTimestamp:
           type: integer
           description: 区块链区块时间戳（毫秒）
-      examples:
-        - issueNumber: '20250519103010538'
-          number: '3'
-          color: green
-          premium: '3'
-          sum: 3
-          blockId: 00000000044faa309768a6d0caca6361dd7dfc28c927ce1d55ea4bc2c555ea43
-          blockNumber: 72329776
-          blockTimestamp: 1747645074000
-      x-examples:
-        Example 1:
-          issueNumber: string
-          number: string
-          color: string
-          premium: string
-          sum: 0
-          blockId: string
-          blockNumber: 0
-          blockTimestamp: 0
-      x-stoplight:
-        id: wnfmoqj14vsrw
+        status:
+          type: string
+          x-stoplight:
+            id: i5d1bionvsjxl
+          default: pending
+          example: pending
+          description: "status\r\npending, fished"
     Pagination:
       type: object
       properties:
