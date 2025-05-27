@@ -1969,16 +1969,22 @@ paths:
       x-stoplight:
         id: helt3bs4sfpz4
     parameters: []
-  '/api/v1/lottery/{gameCode}/issue-status':
+  '/api/v1/lottery/{category}/{gameCode}/issue-status':
     parameters:
       - schema:
           type: string
         name: gameCode
         in: path
         required: true
+      - schema:
+          type: string
+        name: category
+        in: path
+        required: true
     get:
       summary: Get issue info status
-      tags: []
+      tags:
+        - lottery
       responses:
         '200':
           description: OK
@@ -1992,7 +1998,7 @@ paths:
                     x-stoplight:
                       id: a1mfcnl3e8d6p
                   data:
-                    $ref: '#/components/schemas/LotteryGameIssue'
+                    $ref: '#/components/schemas/LotteryIssueStatus'
                     x-stoplight:
                       id: 311p96gp03fo9
               examples:
@@ -2005,9 +2011,9 @@ paths:
                       serviceTime: '2025-05-24T08:47:22Z'
                     data:
                       gameCode: string
-                      internvalSeconds: 0
+                      intervalSeconds: 0
                       previous:
-                        issueNumber: '20250527100010891'
+                        issueNumber: '20250527100010892'
                         startTime: 0
                         endTime: 0
                       current:
@@ -2015,10 +2021,10 @@ paths:
                         startTime: 0
                         endTime: 0
                       next:
-                        issueNumber: '20250527100010893'
+                        issueNumber: '20250527100010892'
                         startTime: 0
                         endTime: 0
-      operationId: get-api-v1-categoryCode-gameCode
+      operationId: get-api-v1-game-code-issue-status
       x-stoplight:
         id: 7c7vfn8zstem0
       parameters:
@@ -3050,7 +3056,7 @@ components:
           type: string
           x-stoplight:
             id: i4ahcdp3nmxzs
-        internvalSeconds:
+        intervalSeconds:
           type: integer
           x-stoplight:
             id: p7ftopclq35ct
@@ -3068,9 +3074,9 @@ components:
             id: o5v54p2fdoy3i
       examples:
         - gameCode: string
-          internvalSeconds: 0
+          intervalSeconds: 0
           previous:
-            issueNumber: '20250527100010891'
+            issueNumber: '20250527100010892'
             startTime: 0
             endTime: 0
           current:
@@ -3078,7 +3084,7 @@ components:
             startTime: 0
             endTime: 0
           next:
-            issueNumber: '20250527100010893'
+            issueNumber: '20250527100010892'
             startTime: 0
             endTime: 0
     LotteryGameIssueSimpleInfo:
