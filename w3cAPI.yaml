@@ -1969,6 +1969,46 @@ paths:
       x-stoplight:
         id: helt3bs4sfpz4
     parameters: []
+  '/api/v1/{categoryCode}/{gameCode}':
+    parameters:
+      - schema:
+          type: string
+        name: categoryCode
+        in: path
+        required: true
+      - schema:
+          type: string
+        name: gameCode
+        in: path
+        required: true
+    get:
+      summary: Get
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta'
+                    x-stoplight:
+                      id: a1mfcnl3e8d6p
+                  data:
+                    type: string
+                    x-stoplight:
+                      id: 311p96gp03fo9
+      operationId: get-api-v1-categoryCode-gameCode
+      x-stoplight:
+        id: 7c7vfn8zstem0
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: ts
+          description: timestamp
 components:
   schemas:
     Meta:
@@ -2982,3 +3022,67 @@ components:
           refresh_expires_in: 604800
       x-stoplight:
         id: 6jxm6etwswwc3
+    LotteryGameIssue:
+      title: LotteryGameIssue
+      x-stoplight:
+        id: vhz697bq70e6o
+      type: object
+      properties:
+        gameCode:
+          type: string
+          x-stoplight:
+            id: i4ahcdp3nmxzs
+        internvalSeconds:
+          type: integer
+          x-stoplight:
+            id: p7ftopclq35ct
+        previous:
+          $ref: '#/components/schemas/LotteryGameIssueSimpleInfo'
+          x-stoplight:
+            id: 02krptxwye75z
+        current:
+          $ref: '#/components/schemas/LotteryGameIssueSimpleInfo'
+          x-stoplight:
+            id: k62qx1sy2bphz
+        next:
+          $ref: '#/components/schemas/LotteryGameIssueSimpleInfo'
+          x-stoplight:
+            id: o5v54p2fdoy3i
+      examples:
+        - gameCode: string
+          internvalSeconds: 0
+          previous:
+            issueNumber: '20250527100010891'
+            startTime: 0
+            endTime: 0
+          current:
+            issueNumber: '20250527100010892'
+            startTime: 0
+            endTime: 0
+          next:
+            issueNumber: '20250527100010893'
+            startTime: 0
+            endTime: 0
+    LotteryGameIssueSimpleInfo:
+      title: LotteryGameIssueSimpleInfo
+      x-stoplight:
+        id: mq9zok1wbxksp
+      type: object
+      properties:
+        issueNumber:
+          type: string
+          x-stoplight:
+            id: s8tuvl6fqduyh
+          example: '20250527100010892'
+        startTime:
+          type: integer
+          x-stoplight:
+            id: jy4be49w6hr5j
+        endTime:
+          type: integer
+          x-stoplight:
+            id: oyl63ofnjvy3z
+      examples:
+        - issueNumber: '20250527100010892'
+          startTime: 0
+          endTime: 0
