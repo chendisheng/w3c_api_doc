@@ -374,7 +374,11 @@ paths:
                     type: object
                     properties:
                       bets:
-                        $ref: '#/components/schemas/LotteryBet'
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/LotteryBet'
+                          x-stoplight:
+                            id: 2yqyl66vcgrcm
                       pagination:
                         $ref: '#/components/schemas/Pagination'
               examples:
@@ -387,17 +391,13 @@ paths:
                       serviceTime: '2025-05-24T08:47:22Z'
                     data:
                       bets:
-                        gameCode: Go_1M
-                        issueNumber: '20250519001'
-                        play_types:
-                          - playTypeId: 119
-                            playBet: big
-                            amount: 10
-                            multiple: 1
-                          - playTypeId: 112
-                            playBet: green
-                            amount: 100
-                            multiple: 5
+                        - gameCode: string
+                          issueNumber: string
+                          playBets:
+                            - playTypeId: 119
+                              playBet: big
+                              amount: 10
+                              multiple: 1
                       pagination:
                         pageNo: 0
                         totalPage: 0
